@@ -1,12 +1,14 @@
 import React from "react";
 
-const Users = ({ profiles, handleStatus, handleDelete }) => {
+const PausedProfiles = ({ profiles, handleStatus, handleDelete }) => {
+  const pauseList = profiles.filter((profile) => profile.status === false);
+
   return (
     <div>
-      <h1 className="text-3xl font-bold text-center text-gray-800">
-        All Profile List
-      </h1>
       <div>
+        <h1 className="text-3xl text-center text-gray-800 font-bold">
+          Paused Profile List
+        </h1>
         <div className="container mx-auto px-4 sm:px-8 max-w-3xl">
           <div className="py-8">
             <div className="-mx-4 sm:-mx-8 px-4 sm:px-8 py-4 overflow-x-auto">
@@ -41,7 +43,7 @@ const Users = ({ profiles, handleStatus, handleDelete }) => {
                     </tr>
                   </thead>
                   <tbody>
-                    {profiles.map((profile) => (
+                    {pauseList.map((profile) => (
                       <tr key={profile._id}>
                         <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
                           <div className="flex items-center">
@@ -55,37 +57,42 @@ const Users = ({ profiles, handleStatus, handleDelete }) => {
                               </a>
                             </div>
                             <div className="ml-3">
-                              <p className="text-gray-900 font-semibold whitespace-no-wrap">
+                              <p className="text-gray-900 whitespace-no-wrap">
                                 {profile.name}
                               </p>
                             </div>
                           </div>
                         </td>
                         <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                          <p className="text-gray-900 font-semibold whitespace-no-wrap">
+                          <p className="text-gray-900 whitespace-no-wrap">
                             12/09/2020
                           </p>
                         </td>
                         <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                          <button
-                            onClick={() => handleStatus(profile._id)}
-                            className="relative inline-block px-3 py-1 font-semibold text-green-900 leading-tight"
-                          >
-                            <span
-                              aria-hidden="true"
-                              className="absolute inset-0 bg-green-200 opacity-50 rounded-full"
-                            ></span>
-                            {profile.status === true && (
-                              <span className="relative font-semibold">
-                                active
-                              </span>
-                            )}
-                            {profile.status === false && (
-                              <span className="relative font-semibold">
-                                paused
-                              </span>
-                            )}
-                          </button>
+                          {profile.status === true && (
+                            <button
+                              onClick={() => handleStatus(profile._id)}
+                              className="relative inline-block px-3 py-1 font-semibold text-green-900 leading-tight"
+                            >
+                              <span
+                                aria-hidden="true"
+                                className="absolute inset-0 bg-green-200 opacity-50 rounded-full"
+                              ></span>
+                              <span className="relative">active</span>
+                            </button>
+                          )}
+                          {profile.status === false && (
+                            <button
+                              onClick={() => handleStatus(profile._id)}
+                              className="relative inline-block px-3 py-1 font-semibold text-gray-800 leading-tight"
+                            >
+                              <span
+                                aria-hidden="true"
+                                className="absolute inset-0 bg-yellow-200 opacity-50 rounded-full"
+                              ></span>
+                              <span className="relative">paused</span>
+                            </button>
+                          )}
                         </td>
                         <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
                           <button
@@ -96,9 +103,7 @@ const Users = ({ profiles, handleStatus, handleDelete }) => {
                               aria-hidden="true"
                               className="absolute inset-0 bg-red-200 opacity-50 rounded-full"
                             ></span>
-                            <span className="relative font-semibold">
-                              delete
-                            </span>
+                            <span className="relative">delete</span>
                           </button>
                         </td>
                       </tr>
@@ -114,4 +119,4 @@ const Users = ({ profiles, handleStatus, handleDelete }) => {
   );
 };
 
-export default Users;
+export default PausedProfiles;
