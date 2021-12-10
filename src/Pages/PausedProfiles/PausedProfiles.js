@@ -57,7 +57,7 @@ const PausedProfiles = ({ profiles, handleStatus, handleDelete }) => {
                               </a>
                             </div>
                             <div className="ml-3">
-                              <p className="text-gray-900 whitespace-no-wrap">
+                              <p className="text-gray-900 font-semibold whitespace-no-wrap">
                                 {profile.name}
                               </p>
                             </div>

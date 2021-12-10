@@ -16,7 +16,7 @@ const AddUser = ({isLoading, setIsLoading}) => {
       e.preventDefault();
       userData.status = true;
 
-      fetch('http://localhost:5000/profile', {
+      fetch('https://sheltered-anchorage-25040.herokuapp.com/profile', {
           method: 'POST',
           headers: {
               'content-type': 'application/json'

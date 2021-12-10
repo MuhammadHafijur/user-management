@@ -8,7 +8,7 @@ const Home = () => {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    fetch("http://localhost:5000/profile")
+    fetch("https://sheltered-anchorage-25040.herokuapp.com/profile")
       .then((res) => res.json())
       .then((data) => setProfiles(data));
   }, [isLoading]);
@@ -25,7 +25,7 @@ const Home = () => {
       updateInfo.status = true;
     }
 
-    const url = `http://localhost:5000/status/${id}`;
+    const url = `https://sheltered-anchorage-25040.herokuapp.com/status/${id}`;
     fetch(url, {
       method: "PUT",
       headers: {
@@ -37,7 +37,7 @@ const Home = () => {
       .then((data) => {
         if (data.modifiedCount > 0) {
           alert("Profile has been updated.");
-          fetch("http://localhost:5000/profile")
+          fetch("https://sheltered-anchorage-25040.herokuapp.com/profile")
             .then((res) => res.json())
             .then((data) => setProfiles(data));
         }
@@ -47,7 +47,7 @@ const Home = () => {
   const handleDelete = (id) => {
     const proceed = window.confirm("Are you sure you want to delete ?");
     if (proceed) {
-      const url = `http://localhost:5000/profile/${id}`;
+      const url = `https://sheltered-anchorage-25040.herokuapp.com/profile/${id}`;
       fetch(url, {
         method: "DELETE",
       })
